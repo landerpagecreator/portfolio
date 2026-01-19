@@ -1,0 +1,953 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anas | Software Developer</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Anas - Software developer creating clean, fast applications and landing pages. Python, JavaScript, Godot expert.">
+    <meta name="keywords" content="software developer, web developer, Python, JavaScript, landing pages, Godot">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Reset & Base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1e40af;
+            --secondary: #7c3aed;
+            --light: #ffffff;
+            --dark: #0f172a;
+            --gray: #64748b;
+            --light-gray: #f8fafc;
+            --border: #e2e8f0;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            --transition: all 0.3s ease;
+            --radius: 8px;
+        }
+        
+        [data-theme="dark"] {
+            --light: #0f172a;
+            --dark: #f8fafc;
+            --light-gray: #1e293b;
+            --gray: #cbd5e1;
+            --border: #334155;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background: var(--light);
+            transition: var(--transition);
+            min-height: 100vh;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        section {
+            padding: 80px 0;
+        }
+        
+        h1, h2, h3 {
+            font-weight: 700;
+            line-height: 1.2;
+        }
+        
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        h2 {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            position: relative;
+            display: inline-block;
+        }
+        
+        h2:after {
+            content: '';
+            position: absolute;
+            width: 60%;
+            height: 3px;
+            background: var(--primary);
+            bottom: -8px;
+            left: 0;
+            border-radius: 2px;
+        }
+        
+        .section-title h2:after {
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+        }
+        
+        p {
+            color: var(--gray);
+            margin-bottom: 1.5rem;
+        }
+        
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition);
+        }
+        
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            background: var(--primary);
+            color: white;
+            border-radius: var(--radius);
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 1rem;
+        }
+        
+        .btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow);
+        }
+        
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+        
+        .btn-outline:hover {
+            background: var(--primary);
+            color: white;
+        }
+        
+        .btn-small {
+            padding: 8px 16px;
+            font-size: 0.9rem;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: var(--light);
+            box-shadow: var(--shadow);
+            z-index: 1000;
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+        
+        .nav-links a {
+            font-weight: 500;
+            font-size: 1rem;
+            position: relative;
+        }
+        
+        .nav-links a:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            left: 0;
+            bottom: -4px;
+            transition: var(--transition);
+        }
+        
+        .nav-links a:hover:after {
+            width: 100%;
+        }
+        
+        /* Mobile Menu */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--dark);
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+            border-radius: var(--radius);
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+        
+        .mobile-menu {
+            position: fixed;
+            top: 70px;
+            right: 20px;
+            background: var(--light);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 1rem;
+            width: 200px;
+            transform: translateY(-20px);
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+            border: 1px solid var(--border);
+            z-index: 999;
+        }
+        
+        .mobile-menu.active {
+            transform: translateY(0);
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .mobile-menu a {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 16px;
+            border-radius: var(--radius);
+            font-weight: 500;
+        }
+        
+        .mobile-menu a:hover {
+            background: var(--primary);
+            color: white;
+        }
+        
+        /* Combined Theme & Menu Toggle (Mobile) */
+        .mobile-controls {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .theme-toggle {
+            background: var(--light-gray);
+            border: 1px solid var(--border);
+            width: 40px;
+            height: 40px;
+            border-radius: var(--radius);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: var(--dark);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .theme-toggle:hover {
+            background: var(--primary);
+            color: white;
+        }
+        
+        /* Hero */
+        .hero {
+            padding-top: 140px;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+        }
+        
+        .hero-content {
+            max-width: 600px;
+        }
+        
+        .hero h1 span {
+            color: var(--primary);
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .hero-btns {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        /* Animated Text */
+        .typing-container {
+            display: inline-block;
+            margin-left: 10px;
+            position: relative;
+        }
+        
+        .typing-text {
+            color: var(--primary);
+            font-weight: 600;
+            display: inline-block;
+            white-space: nowrap;
+            border-right: 3px solid var(--primary);
+            animation: blink 0.7s infinite;
+            padding-right: 5px;
+        }
+        
+        @keyframes blink {
+            0%, 100% { border-color: var(--primary); }
+            50% { border-color: transparent; }
+        }
+        
+        /* Skills */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        
+        .skill-category {
+            background: var(--light-gray);
+            padding: 1.5rem;
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+            transition: var(--transition);
+        }
+        
+        .skill-category:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow);
+        }
+        
+        .skill-category h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .skill-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        
+        .skill-tag {
+            background: rgba(37, 99, 235, 0.1);
+            color: var(--primary);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        
+        /* Projects */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+        
+        .project-card {
+            background: var(--light-gray);
+            border-radius: var(--radius);
+            overflow: hidden;
+            border: 1px solid var(--border);
+            transition: var(--transition);
+        }
+        
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow);
+        }
+        
+        .project-icon {
+            height: 60px;
+            background: rgba(37, 99, 235, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: var(--primary);
+        }
+        
+        .project-content {
+            padding: 1.5rem;
+        }
+        
+        .project-content h3 {
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+        }
+        
+        .project-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        /* Certificates */
+        .certificates-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1rem;
+        }
+        
+        .certificate-item {
+            background: var(--light-gray);
+            padding: 1rem;
+            border-radius: var(--radius);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            border: 1px solid var(--border);
+            transition: var(--transition);
+        }
+        
+        .certificate-item:hover {
+            transform: translateX(5px);
+        }
+        
+        .cert-icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(37, 99, 235, 0.1);
+            border-radius: var(--radius);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            flex-shrink: 0;
+        }
+        
+        /* Contact */
+        .contact {
+            text-align: center;
+            background: var(--light-gray);
+            padding: 100px 0;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        
+        .social-link {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: var(--dark);
+            border: 1px solid var(--border);
+            transition: var(--transition);
+        }
+        
+        .social-link:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-3px);
+        }
+        
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2rem 0;
+            border-top: 1px solid var(--border);
+            color: var(--gray);
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            h2 {
+                font-size: 1.8rem;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .mobile-menu-btn {
+                display: flex;
+            }
+            
+            .mobile-controls {
+                display: flex;
+            }
+            
+            .hero-btns {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .hero-btns .btn {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .mobile-menu {
+                top: 80px;
+                right: 20px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            h2 {
+                font-size: 1.5rem;
+            }
+            
+            section {
+                padding: 60px 0;
+            }
+            
+            .container {
+                padding: 0 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <div class="logo">Anas.</div>
+                <div class="nav-links">
+                    <a href="#about">About</a>
+                    <a href="#skills">Skills</a>
+                    <a href="#projects">Projects</a>
+                    <a href="#certificates">Certificates</a>
+                    <a href="#contact">Contact</a>
+                    <div class="theme-toggle" id="desktopThemeToggle">
+                        <i class="fas fa-moon"></i>
+                    </div>
+                </div>
+                <div class="mobile-controls">
+                    <div class="theme-toggle" id="mobileThemeToggle">
+                        <i class="fas fa-moon"></i>
+                    </div>
+                    <button class="mobile-menu-btn" id="menuToggle">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </nav>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div class="mobile-menu" id="mobileMenu">
+            <a href="#about">
+                <i class="fas fa-user"></i> About
+            </a>
+            <a href="#skills">
+                <i class="fas fa-code"></i> Skills
+            </a>
+            <a href="#projects">
+                <i class="fas fa-project-diagram"></i> Projects
+            </a>
+            <a href="#certificates">
+                <i class="fas fa-certificate"></i> Certificates
+            </a>
+            <a href="#contact">
+                <i class="fas fa-envelope"></i> Contact
+            </a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="about">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Hi, I'm <span>Anas</span></h1>
+                <p>
+                    I <span class="typing-container">
+                        <span class="typing-text" id="typingText">build</span>
+                    </span> clean, fast applications
+                </p>
+                <p class="hero-description">
+                    A software developer and web creator focused on building clean, fast, and practical applications and landing pages. I enjoy turning ideas into real products.
+                </p>
+                <div class="hero-btns">
+                    <a href="#projects" class="btn">
+                        <i class="fas fa-code"></i> View Projects
+                    </a>
+                    <a href="#contact" class="btn btn-outline">
+                        <i class="fas fa-envelope"></i> Contact Me
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills">
+        <div class="container">
+            <div class="section-title">
+                <h2>My Skills</h2>
+            </div>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3><i class="fas fa-code"></i> Programming</h3>
+                    <div class="skill-list">
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">JavaScript</span>
+                        <span class="skill-tag">HTML5</span>
+                        <span class="skill-tag">CSS3</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3><i class="fas fa-paint-brush"></i> Web</h3>
+                    <div class="skill-list">
+                        <span class="skill-tag">Responsive Design</span>
+                        <span class="skill-tag">Landing Pages</span>
+                        <span class="skill-tag">UI/UX</span>
+                        <span class="skill-tag">Performance</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3><i class="fas fa-laptop-code"></i> Apps</h3>
+                    <div class="skill-list">
+                        <span class="skill-tag">Desktop Apps</span>
+                        <span class="skill-tag">SaaS</span>
+                        <span class="skill-tag">Local-first</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3><i class="fas fa-gamepad"></i> Games</h3>
+                    <div class="skill-list">
+                        <span class="skill-tag">Godot Engine</span>
+                        <span class="skill-tag">Unity</span>
+                        <span class="skill-tag">2D & 3D</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" style="background: var(--light-gray);">
+        <div class="container">
+            <div class="section-title">
+                <h2>My Projects</h2>
+            </div>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-icon">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3>Landerly</h3>
+                        <p>Landing page creator for small businesses focused on speed and conversions.</p>
+                        <div class="project-links">
+                            <a href="https://landerpagecreator.github.io/landerly/" target="_blank" class="btn btn-small">
+                                <i class="fas fa-external-link-alt"></i> Live Demo
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-icon">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3>Zenova</h3>
+                        <p>Modern landing page with clean layout and responsive design.</p>
+                        <div class="project-links">
+                            <a href="https://landerpagecreator.github.io/zenova/" target="_blank" class="btn btn-small">
+                                <i class="fas fa-external-link-alt"></i> Live Demo
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-icon">
+                        <i class="fas fa-file-alt"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3>TEXTBI</h3>
+                        <p>Text-based project for simplicity and clarity in presenting information.</p>
+                        <div class="project-links">
+                            <a href="https://landerpagecreator.github.io/TEXTBI/" target="_blank" class="btn btn-small">
+                                <i class="fas fa-external-link-alt"></i> Live Demo
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-icon">
+                        <i class="fas fa-calendar-check"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3>Sunday</h3>
+                        <p>Productivity app for tracking daily activities and routines.</p>
+                        <div class="project-links">
+                            <button class="btn btn-small" style="background: var(--gray); cursor: not-allowed;">
+                                <i class="fas fa-clock"></i> Coming Soon
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certificates Section -->
+    <section id="certificates">
+        <div class="container">
+            <div class="section-title">
+                <h2>Certificates</h2>
+            </div>
+            <div class="certificates-grid">
+                <div class="certificate-item">
+                    <div class="cert-icon">
+                        <i class="fab fa-python"></i>
+                    </div>
+                    <div>
+                        <h4>Python Development</h4>
+                        <p>Google & Coursera</p>
+                    </div>
+                </div>
+                <div class="certificate-item">
+                    <div class="cert-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <div>
+                        <h4>AI Integration</h4>
+                        <p>Coursera</p>
+                    </div>
+                </div>
+                <div class="certificate-item">
+                    <div class="cert-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <div>
+                        <h4>Flutter UI</h4>
+                        <p>iSchool</p>
+                    </div>
+                </div>
+                <div class="certificate-item">
+                    <div class="cert-icon">
+                        <i class="fas fa-gamepad"></i>
+                    </div>
+                    <div>
+                        <h4>Game Development</h4>
+                        <p>iSchool</p>
+                    </div>
+                </div>
+                <div class="certificate-item">
+                    <div class="cert-icon">
+                        <i class="fab fa-unity"></i>
+                    </div>
+                    <div>
+                        <h4>Unity Development</h4>
+                        <p>Unity</p>
+                    </div>
+                </div>
+                <div class="certificate-item">
+                    <div class="cert-icon">
+                        <i class="fas fa-palette"></i>
+                    </div>
+                    <div>
+                        <h4>UI/UX Design</h4>
+                        <p>Google</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2>Let's Connect</h2>
+            <p>Feel free to reach out for projects or just to say hello!</p>
+            <a href="mailto:anasjccoding@gmail.com" class="btn">
+                <i class="fas fa-envelope"></i> anasjccoding@gmail.com
+            </a>
+            <div class="social-links">
+                <a href="https://github.com/landerpagecreator" target="_blank" class="social-link">
+                    <i class="fab fa-github"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 Anas. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Theme Toggle
+        const html = document.documentElement;
+        const desktopThemeToggle = document.getElementById('desktopThemeToggle');
+        const mobileThemeToggle = document.getElementById('mobileThemeToggle');
+        const themeIcons = document.querySelectorAll('.theme-toggle i');
+        
+        function toggleTheme() {
+            const currentTheme = html.getAttribute('data-theme');
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            
+            html.setAttribute('data-theme', newTheme);
+            
+            // Update all theme icons
+            themeIcons.forEach(icon => {
+                icon.className = newTheme === 'light' ? 'fas fa-moon' : 'fas fa-sun';
+            });
+            
+            // Save preference
+            localStorage.setItem('portfolio-theme', newTheme);
+            
+            // Close mobile menu if open
+            mobileMenu.classList.remove('active');
+        }
+        
+        desktopThemeToggle?.addEventListener('click', toggleTheme);
+        mobileThemeToggle?.addEventListener('click', toggleTheme);
+        
+        // Load saved theme
+        const savedTheme = localStorage.getItem('portfolio-theme') || 'light';
+        html.setAttribute('data-theme', savedTheme);
+        themeIcons.forEach(icon => {
+            icon.className = savedTheme === 'light' ? 'fas fa-moon' : 'fas fa-sun';
+        });
+        
+        // Mobile Menu
+        const menuToggle = document.getElementById('menuToggle');
+        const mobileMenu = document.getElementById('mobileMenu');
+        
+        menuToggle.addEventListener('click', (e) => {
+            e.stopPropagation();
+            mobileMenu.classList.toggle('active');
+        });
+        
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!mobileMenu.contains(e.target) && !menuToggle.contains(e.target)) {
+                mobileMenu.classList.remove('active');
+            }
+        });
+        
+        // Close menu on link click
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+            });
+        });
+        
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Typing Animation
+        const typingText = document.getElementById('typingText');
+        const words = ['build', 'create', 'develop', 'design', 'engineer'];
+        let wordIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        let typingSpeed = 100;
+        
+        function type() {
+            const currentWord = words[wordIndex];
+            
+            if (isDeleting) {
+                typingText.textContent = currentWord.substring(0, charIndex - 1);
+                charIndex--;
+                typingSpeed = 50;
+            } else {
+                typingText.textContent = currentWord.substring(0, charIndex + 1);
+                charIndex++;
+                typingSpeed = 100;
+            }
+            
+            if (!isDeleting && charIndex === currentWord.length) {
+                typingSpeed = 1000;
+                isDeleting = true;
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                wordIndex = (wordIndex + 1) % words.length;
+                typingSpeed = 500;
+            }
+            
+            setTimeout(type, typingSpeed);
+        }
+        
+        // Start typing animation
+        setTimeout(type, 1000);
+        
+        // Simple scroll effect for header
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.padding = '0.5rem 0';
+            } else {
+                header.style.padding = '1rem 0';
+            }
+        });
+    </script>
+</body>
+</html>
